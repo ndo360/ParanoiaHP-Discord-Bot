@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const TOKEN = "NDQ0ODI1MTkzNDcxNTQxMjU4.DdhjQw.6lD1EzkxeCfo6OxXLv24LBKG0p0";
+const TOKEN = "TOKEN_HERE";
 const PREFIX = "!"
 var bot = new Discord.Client();
 
@@ -95,20 +95,25 @@ bot.on("ready", function() {
 	});
 });
 
+/* ON JOIN, GIVE ROLE
 bot.on('guildMemberAdd', member => {
 	console.log('User ' + member.user.username + ' joined')
-	bot.channels.get('444510272481394698').send('User ' + member.user.username + ' joined on ' + member.joinedAt)
-	var verify = member.guild.roles.find('name', 'Troubleshooter');
-	member.addRole(verify)
+	//Logging joins
+	bot.channels.get('LOG CHANNEL ID').send('User ' + member.user.username + ' joined on ' + member.joinedAt)
+	var auto = member.guild.roles.find('name', 'ROLE NAME TO GIVE');
+	member.addRole(auto)
 });
+*/
 
 bot.on("message", async message => {
 
 	if (!message.content.startsWith(PREFIX)) return;
-
-	if (['227931352689803264'].includes(message.guild.id)) {
-
-	if (['444509614843625472'].includes(message.channel.id)) return;
+	
+	// Specific guilds only
+	if (['GUILD ID', 'GUILD ID'].includes(message.guild.id)) {
+	
+	// Channels to ignore
+	if (['Channel ID', 'Channel ID'].includes(message.channel.id)) return;
 
 	if (message.author.equals(bot.user)) return;
 
@@ -121,11 +126,15 @@ bot.on("message", async message => {
 		case "gen":
 		randomchoose();
 		message.author.send('-------------\nYour scenario is:\n-------------\n' + chosen);
-		bot.channels.get('444510272481394698').send('User ' + message.author.tag + ' generated scenario ' + choose + ' successfully')
+		//Logger
+		bot.channels.get('Log Channel ID').send('User ' + message.author.tag + ' generated scenario ' + choose + ' successfully')
 		break;
+		/*
+		IN PROGRESS
 		case "quicktut":
 		message.author.send("You are a high programmer among other high programmers, the highest rank in the game\nYou are essentially all inside a panic-like room\n")
 		break;
+		*/
 		case "gendrawback":
 		const genCount = parseInt(args[1]);
 		if (isNaN(genCount)) {
@@ -139,7 +148,8 @@ bot.on("message", async message => {
 		}
 		var [resultlog, resultdm] = randomDrawback(genCount)
 		message.author.send('-------------\nDrawback(s) generated are:\n-------------\n' + resultdm)
-		bot.channels.get('444510272481394698').send('User ' + message.author.tag + ' generated drawbacks:' + "**" + resultlog + "**" +' successfully')
+		//Logger
+		bot.channels.get('Log Channel ID').send('User ' + message.author.tag + ' generated drawbacks:' + "**" + resultlog + "**" +' successfully')
 		break;
 		case "roll":
 		const rollCount = parseInt(args[1]);
@@ -150,7 +160,8 @@ bot.on("message", async message => {
 			return message.channel.send("Higher than 1 please!")
 		}
 		message.channel.send("Rolled: " + "**" + roll(rollCount) + "**")
-		bot.channels.get('444510272481394698').send('User ' + message.author.tag + ' rolled ' + rolled)
+		//Logger
+		bot.channels.get('Log Channel ID').send('User ' + message.author.tag + ' rolled ' + rolled)
 		break;
 		case "all":
 		if (message.content.match(/Drawbacks/i)) {

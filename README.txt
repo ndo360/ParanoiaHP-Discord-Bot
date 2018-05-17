@@ -1,5 +1,5 @@
 # ParanoiaHP-Discord-Bot
-This is the source code for my discord bot created for Paranoia high programmers. Enjoy!
+The Paranoia High Programmers WikiDiscordBot. Created by DevRaven.
 
 How to set up:
 1. Install Node.js
